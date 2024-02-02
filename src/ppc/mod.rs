@@ -1,6 +1,7 @@
 //! Implementations for various PowerPC architectures.
 
-use gdbstub::arch::{Arch, RegId, SingleStepGdbBehavior};
+use gdbstub::arch::Arch;
+use gdbstub::arch::RegId;
 
 pub mod reg;
 
@@ -23,10 +24,5 @@ impl<RegIdImpl: RegId> Arch for PowerPcAltivec32<RegIdImpl> {
         Some(
             r#"<target version="1.0"><architecture>powerpc:common</architecture><feature name="org.gnu.gdb.power.core"></feature><feature name="org.gnu.gdb.power.fpu"></feature><feature name="org.gnu.gdb.power.altivec"></feature></target>"#,
         )
-    }
-
-    #[inline(always)]
-    fn single_step_gdb_behavior() -> SingleStepGdbBehavior {
-        SingleStepGdbBehavior::Required
     }
 }
